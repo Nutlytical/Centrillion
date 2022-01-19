@@ -23,14 +23,22 @@ docker-compose up -d
 docker-compose down --rmi all
 ```
 
-[FRONT_END](http://localhost:3000):
+[FRONT_END](http://localhost:3000) cookie not working in production :
 
 ```sh
 http://localhost:3000
+
+OR
+
+https://pepsi-cart-frontend.vercel.app/
 ```
 
-[BACK_END](http://localhost:5000):
+[BACK_END](http://localhost:5000) cookie not working in production :
 
 ```sh
 http://localhost:5000
+
+OR
+
+https://pepsi-cart-backend.azurewebsites.net
 ```
