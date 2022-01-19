@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 
 import { AuthContext } from "../context/AuthProvider";
 
+const { NEXT_PUBLIC_BACKEND_URI } = process.env;
+
 export default function Home() {
   const router = useRouter();
 
@@ -21,7 +23,7 @@ export default function Home() {
 
   function fetchProduct() {
     try {
-      axios.get("http://localhost:5000/api/products").then((response) => {
+      axios.get(`${NEXT_PUBLIC_BACKEND_URI}/products`).then((response) => {
         setProducts(response.data);
       });
     } catch (error) {
@@ -38,7 +40,7 @@ export default function Home() {
     try {
       axios
         .post(
-          "http://localhost:5000/api/products/update",
+          `${NEXT_PUBLIC_BACKEND_URI}/products/update`,
           {
             productId,
             price,
@@ -57,7 +59,7 @@ export default function Home() {
   const handleDeleteProduct = (productId: string) => {
     try {
       axios
-        .delete(`http://localhost:5000/api/products/delete/${productId}`, {
+        .delete(`${NEXT_PUBLIC_BACKEND_URI}/products/delete/${productId}`, {
           withCredentials: true,
         })
         .then((response) => {
@@ -74,7 +76,7 @@ export default function Home() {
 
     try {
       axios
-        .get(`http://localhost:5000/api/products?name=${searchTerm}`)
+        .get(`${NEXT_PUBLIC_BACKEND_URI}/products?name=${searchTerm}`)
         .then((response) => {
           if (response.data.message) {
             Swal.fire({
@@ -103,7 +105,7 @@ export default function Home() {
     try {
       axios
         .post(
-          "http://localhost:5000/api/carts/add-to-cart",
+          `${NEXT_PUBLIC_BACKEND_URI}/carts/add-to-cart`,
           {
             productId,
             quantity,

@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 
 import { AuthContext } from "../context/AuthProvider";
 
+const { NEXT_PUBLIC_BACKEND_URI } = process.env;
+
 export default function SignUp() {
   const router = useRouter();
 
@@ -26,7 +28,7 @@ export default function SignUp() {
 
     axios
       .post(
-        "http://localhost:5000/api/users/signup",
+        `${NEXT_PUBLIC_BACKEND_URI}/users/signup`,
         {
           username,
           email,

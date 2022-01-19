@@ -2,10 +2,12 @@ import React, { PropsWithChildren, useContext } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { BsCart3 } from "react-icons/bs";
 
 import { AuthContext } from "../context/AuthProvider";
-import { BsCart3 } from "react-icons/bs";
-import Swal from "sweetalert2";
+
+const { NEXT_PUBLIC_BACKEND_URI } = process.env;
 
 export default function Layout({ children }: PropsWithChildren<{}>) {
   const router = useRouter();
@@ -17,7 +19,7 @@ export default function Layout({ children }: PropsWithChildren<{}>) {
 
     try {
       axios
-        .get("http://localhost:5000/api/users/signout", {
+        .get(`${NEXT_PUBLIC_BACKEND_URI}/users/signout`, {
           withCredentials: true,
         })
         .then(() => {

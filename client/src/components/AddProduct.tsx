@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 
 import { AuthContext } from "../context/AuthProvider";
 
+const { NEXT_PUBLIC_BACKEND_URI } = process.env;
+
 export default function AddProduct() {
   const router = useRouter();
 
@@ -28,7 +30,7 @@ export default function AddProduct() {
 
     axios
       .post(
-        "http://localhost:5000/api/products/create",
+        `${NEXT_PUBLIC_BACKEND_URI}/products/create`,
         {
           name,
           description,

@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 
 import { AuthContext } from "../context/AuthProvider";
 
+const { NEXT_PUBLIC_BACKEND_URI } = process.env;
+
 export default function Order() {
   const router = useRouter();
 
@@ -15,7 +17,7 @@ export default function Order() {
   function fetchOrders() {
     try {
       axios
-        .get("http://localhost:5000/api/orders/admin", {
+        .get(`${NEXT_PUBLIC_BACKEND_URI}/orders/admin`, {
           withCredentials: true,
         })
         .then((response) => {
@@ -33,7 +35,7 @@ export default function Order() {
     try {
       axios
         .post(
-          "http://localhost:5000/api/orders/update",
+          `${NEXT_PUBLIC_BACKEND_URI}/orders/update`,
           {
             orderId,
             status: e.target.value,

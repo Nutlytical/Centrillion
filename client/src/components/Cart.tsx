@@ -6,6 +6,8 @@ import Swal from "sweetalert2";
 
 import { AuthContext } from "../context/AuthProvider";
 
+const { NEXT_PUBLIC_BACKEND_URI } = process.env;
+
 export default function Cart() {
   const router = useRouter();
 
@@ -17,7 +19,7 @@ export default function Cart() {
   const fetchCart = () => {
     try {
       axios
-        .get(`http://localhost:5000/api/carts`, {
+        .get(`${NEXT_PUBLIC_BACKEND_URI}/carts`, {
           withCredentials: true,
         })
         .then((response) => {

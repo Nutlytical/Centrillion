@@ -1,6 +1,6 @@
 # Centrillion Test
 
-all validate is form backend
+all validate is from backend
 <br>
 
 clone:
@@ -8,6 +8,12 @@ clone:
 ```sh
 git clone https://github.com/Nutlytical/Centrillion
 ```
+
+## Admin
+
+email ==> admin@gmail.com
+<br/>
+password ==> Admin1234
 
 ## Docker-Compose
 
