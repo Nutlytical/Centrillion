@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { CartItemModel, ProductModel } from "../models";
+import { CartItemModel, ProductModel, UserModel } from "../models";
 import {
   validateProductName,
   validateProductDescription,
@@ -86,10 +86,26 @@ async function deleteProduct(req: Request, res: Response) {
 
     const allCartItem = await CartItemModel.find({ product: deletedProduct });
 
+    let users = [];
+
     for (let cartItem of allCartItem) {
-      await CartItemModel.findByIdAndDelete(cartItem._id).populate({
-        path: "user",
-      });
+      const deletedCart = await CartItemModel.findByIdAndDelete(cartItem._id);
+
+      const user = await UserModel.findById(deletedCart?.user._id);
+
+      users.push(user);
+    }
+
+    for (let user of users) {
+      const userCart = await CartItemModel.find({ user: user?._id });
+
+      await UserModel.findByIdAndUpdate(
+        user?._id,
+        {
+          carts: userCart,
+        },
+        { new: true }
+      );
     }
 
     return res.json({

@@ -78,7 +78,7 @@ export default function SignUp() {
         </div>
         <div>
           <input
-            type="text"
+            type="password"
             name="password"
             value={input.password}
             placeholder="password"
@@ -88,7 +88,7 @@ export default function SignUp() {
         </div>
         <br />
         <button type="submit" className="border-2 mb-3 p-3 w-40 text-3xl">
-          Login
+          Sign Up
         </button>
       </form>
     </div>

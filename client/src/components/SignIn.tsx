@@ -66,7 +66,7 @@ export default function SignIn() {
         </div>
         <div>
           <input
-            type="text"
+            type="password"
             name="password"
             value={input.password}
             placeholder="password"
